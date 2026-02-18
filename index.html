@@ -3,173 +3,542 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Silk - Home</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Font Awesome CDN for Icons -->
+    <title>Silk Project - Home</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
+    <link rel="icon" type="image/x-icon" href="silkoslogo.png">
     <style>
-        /* Custom Styles - mostly for the color theme from the original CSS */
         body {
             font-family: 'Inter', Arial, sans-serif;
             background-color: #09040C;
             color: #F2E9F7;
+            margin: 0;
+            padding: 0;
+        }
+        html {
+            scroll-behavior: smooth;
         }
         .bg-primary-dark { background-color: #09040C; }
         .bg-primary-medium { background-color: rgba(9, 4, 12, 0.9); }
         .bg-footer-dark { background-color: rgba(6, 2, 8, 0.9); }
         .text-primary-accent { color: #B153DD; }
         .hover-bg-accent:hover { background-color: #7720A2; }
+        
+        /* Utility */
+        .hidden {
+            display: none;
+        }
+        .container {
+            max-width: 1280px;
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+
+        /* Header */
+        header {
+            background-color: rgba(9, 4, 12, 0.7);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            border-bottom: 1px solid #1f2937;
+        }
+        .header-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 4rem;
+        }
+        .logo-link {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: #F2E9F7;
+        }
+        .logo-link img {
+            height: 2rem;
+            width: 2rem;
+            margin-right: 0.75rem;
+        }
+        .logo-link span {
+            font-size: 1.25rem;
+            font-weight: 700;
+        }
+        .account-btn {
+            display: flex;
+            flex-direction: row;
+            gap: 10px;
+            align-items: center;
+            color: #9ca3af;
+            user-select: none;
+            transition: 0.2s;
+            cursor: pointer;
+            border: none;
+            background-color: none;
+        }
+        .account-btn:hover {
+            color: #fff;
+        }
+        .account-btn p {
+            font-size: 14px;
+        }
+
+        /* Desktop Navigation */
+        .desktop-nav {
+            display: none;
+            column-gap: 0.25rem;
+        }
+        .nav-link {
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            color: #d1d5db;
+            text-decoration: none;
+            transition: color 0.2s, background-color 0.2s;
+        }
+        .nav-link:hover {
+            background-color: #374151;
+            color: #fff;
+        }
+
+        /* Desktop Socials */
+        .desktop-socials {
+            display: none;
+            align-items: center;
+            column-gap: 1rem;
+        }
+        .social-link {
+            color: #9ca3af;
+            transition: color 0.2s;
+            cursor: pointer;
+        }
+        .social-link:hover {
+            color: #fff;
+        }
+        .social-link i {
+            font-size: 1.25rem;
+        }
+        .vl {
+            border-left: 1px solid rgba(77, 77, 77, 0.425);
+            height: 35px;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-wrapper {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;
+            width: 100px;
+            align-items: center;
+            gap: 15px;
+        }
+        .mobile-menu-btn {
+            color: #fff;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+        .mobile-menu-btn:focus {
+            outline: none;
+        }
+
+        #mobile-menu {
+            background-color: #111827; /* bg-gray-900 */
+        }
+        #mobile-menu nav {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 1rem;
+            row-gap: 0.5rem;
+        }
+        #mobile-menu .nav-link {
+            display: block;
+            width: 100%;
+            text-align: center;
+        }
+        #mobile-menu .mobile-socials {
+            display: flex;
+            align-items: center;
+            column-gap: 1.5rem;
+            padding-top: 1rem;
+        }
+        #mobile-menu .social-link i {
+            font-size: 1.5rem;
+        }
+
+        /* Responsive (md) */
+        @media (min-width: 900px) {
+            .desktop-nav {
+                display: flex;
+            }
+            .desktop-socials {
+                display: flex;
+            }
+            .mobile-menu-wrapper {
+                display: none;
+            }
+            #mobile-menu {
+                display: none !important; /* md:hidden */
+            }
+        }
+
+        /* Hero Section */
+        .hero-section {
+            min-height: 57vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 5rem 1rem;
+        }
+        .hero-box {
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(4px);
+            padding: 4rem;
+            border-radius: 1rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            max-width: 896px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .hero-box h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            margin-top: 0;
+        }
+        .hero-box p {
+            font-size: 1.125rem;
+            color: #d1d5db;
+            max-width: 672px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 2rem;
+            line-height: 1.5;
+        }
+        .hero-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        /* Buttons */
+        .btn {
+            color: #fff;
+            font-weight: 600;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            transition: transform 0.2s, background-color 0.2s;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            display: inline-flex;
+            align-items: center;
+            column-gap: 0.5rem;
+        }
+        .btn:hover {
+            transform: scale(1.05);
+        }
+        .btn-secondary {
+            background-color: #1f2937; /* bg-gray-800 */
+        }
+        .btn-secondary:hover {
+            background-color: #374151; /* hover:bg-gray-700 */
+        }
+        .btn-primary {
+            background-color: #B153DD;
+        }
+        .btn-primary:hover {
+            background-color: #7720A2;
+        }
+
+        /* Responsive Hero */
+        @media (min-width: 900px) {
+            .hero-box {
+                padding: 3rem;
+            }
+            .hero-box h1 {
+                font-size: 3.75rem;
+            }
+            .hero-box p {
+                font-size: 1.25rem;
+            }
+        }
+
+        /* About Section */
+        #about {
+            padding: 5rem 2rem 5rem 2rem;
+            max-width: 90%;
+        }
+        .about-container {
+            max-width: 1024px;
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 1rem;
+            padding-right: 1rem;
+            display: flex;
+            flex-direction: column;
+            row-gap: 3rem;
+        }
+        #about article h2 {
+            font-size: 1.875rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        #about article p {
+            color: #d1d5db;
+            line-height: 1.625;
+        }
+        #about article a {
+            color: #B153DD;
+            text-decoration: underline;
+        }
+        #about article a:hover {
+            text-decoration: none;
+        }
+
+        /* Developers Section */
+        #devs {
+            padding-top: 5rem;
+            padding-bottom: 5rem;
+            background-color: rgba(9, 4, 12, 0.9); /* bg-primary-medium */
+        }
+        .devs-container {
+            max-width: 1280px;
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 1rem;
+            padding-right: 1rem;
+            text-align: center;
+        }
+        .devs-container h2 {
+            font-size: 1.875rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+        }
+        .dev-card-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+        }
+        
+        /* Dev Card */
+        .dev-card {
+            background-color: rgba(31, 41, 55, 0.5);
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            width: 100%;
+            max-width: 384px;
+            text-align: left;
+            transition: all 0.3s;
+            border: 1px solid #1f2937;
+        }
+        .dev-card:hover {
+            transform: translateY(-0.5rem);
+            box-shadow: 0 10px 15px -0.5px rgba(202, 202, 202, 0.1)
+        }
+        .dev-card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        .dev-card-header img {
+            width: 4rem;
+            height: 4rem;
+            border-radius: 9999px;
+            margin: 1rem;
+            border: 2px solid #b153dd8a;
+        }
+        .dev-card-header-title {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            flex-grow: 1;
+            margin: 4px;
+        }
+        .dev-card-header-title h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            padding: 3px;
+            margin: 0;
+        }
+        .dev-card-header-title a {
+            color: #9ca3af;
+            text-decoration: none;
+            font-size: 0.875rem;
+            transition: color 0.2s;
+            padding: 3px;
+            margin: 0;
+        }
+        .dev-card-header-title p {
+            margin: 0px;
+            padding: 3px;
+        }
+        .dev-card-header-title a:hover {
+            color: #fff;
+        }
+        .dev-card-body {
+            list-style-type: disc;
+            list-style-position: inside;
+            display: flex;
+            flex-direction: column;
+            row-gap: 1rem;
+            color: #d1d5db;
+        }
+
+        /* Footer */
+        footer {
+            background-color: rgba(6, 2, 8, 0.9);
+            text-align: center;
+            padding: 1.5rem 0;
+        }
+        footer p {
+            color: #9ca3af;
+        }
+
     </style>
 </head>
 <body class="bg-primary-dark">
 
-    <!-- Header Section -->
-    <header class="bg-primary-medium/70 backdrop-blur-md sticky top-0 z-50 border-b border-gray-800">
-        <div class="container mx-auto px-4">
-            <div class="flex items-center justify-between h-16">
-                <!-- Logo -->
-                <a href="#" class="flex items-center space-x-3 text-white">
-                    <img src="silkoslogo.svg" alt="SilkOS Logo" class="h-8 w-8">
-                    <span class="text-xl font-bold">Silk Project</span>
+    <header>
+        <div class="container">
+            <div class="header-inner">
+                <a href="index.html" class="logo-link">
+                    <img src="silkoslogo.svg" alt="SilkOS Logo">
+                    <span>Silk Project</span>
                 </a>
 
-                <!-- Desktop Navigation -->
-                <nav class="hidden md:flex space-x-1">
-                    <a href="#about" class="px-4 py-2 rounded-md text-gray-300 hover:bg-gray-700 hover:text-white transition-colors duration-200">About</a>
-                    <a href="#" class="px-4 py-2 rounded-md text-gray-300 hover:bg-gray-700 hover:text-white transition-colors duration-200">News</a>
-                    <a href="#" class="px-4 py-2 rounded-md text-gray-300 hover:bg-gray-700 hover:text-white transition-colors duration-200">Downloads</a>
-                    <a href="#" class="px-4 py-2 rounded-md text-gray-300 hover:bg-gray-700 hover:text-white transition-colors duration-200">Contact</a>
-                    <a href="#" class="px-4 py-2 rounded-md text-gray-300 hover:bg-gray-700 hover:text-white transition-colors duration-200">Links</a>
+                <nav class="desktop-nav">
+                    <a href="#about" class="nav-link">About</a>
+                    <a href="#" class="nav-link">News</a>
+                    <a href="#" class="nav-link">Downloads</a>
+                    <a href="#" class="nav-link">Contact</a>
                 </nav>
                 
-                <!-- Social Icons -->
-                <div class="hidden md:flex items-center space-x-4">
-                    <a href="feed.xml" class="text-gray-400 hover:text-white transition-colors"><i class="fa fa-rss-square text-xl"></i></a>
-                    <a href="mailto:silkprojectdev@gmail.com" class="text-gray-400 hover:text-white transition-colors"><i class="fa fa-envelope text-xl"></i></a>
-                    <a href="https://github.com/Silk-Project" class="text-gray-400 hover:text-white transition-colors"><i class="fab fa-github"></i></a>
+                <div class="desktop-socials">
+                    <a href="feed.xml" class="social-link"><i class="fa fa-rss-square"></i></a>
+                    <a href="mailto:silkprojectdev@gmail.com"" class="social-link"><i class="fa fa-envelope"></i></a>
+                    <a href="https://github.com/Silk-Project" class="social-link"><i class="fab fa-github"></i></a>
                 </div>
 
-                <!-- Mobile Menu Button -->
-                <div class="md:hidden">
-                    <button id="mobile-menu-button" class="text-white focus:outline-none">
-                        <i class="fas fa-bars text-2xl"></i>
+                <div class="mobile-menu-wrapper">
+                    <button id="mobile-menu-button" class="mobile-menu-btn">
+                        <i class="fas fa-bars"></i>
                     </button>
                 </div>
             </div>
         </div>
-         <!-- Mobile Navigation -->
-        <div id="mobile-menu" class="hidden md:hidden bg-gray-900">
-            <nav class="flex flex-col items-center p-4 space-y-2">
-                <a href="#about" class="block w-full text-center py-2 rounded-md text-gray-300 hover:bg-gray-700 hover:text-white transition-colors duration-200">About</a>
-                <a href="#" class="block w-full text-center py-2 rounded-md text-gray-300 hover:bg-gray-700 hover:text-white transition-colors duration-200">News</a>
-                <a href="#" class="block w-full text-center py-2 rounded-md text-gray-300 hover:bg-gray-700 hover:text-white transition-colors duration-200">Downloads</a>
-                <a href="#" class="block w-full text-center py-2 rounded-md text-gray-300 hover:bg-gray-700 hover:text-white transition-colors duration-200">Contact</a>
-                <a href="#" class="block w-full text-center py-2 rounded-md text-gray-300 hover:bg-gray-700 hover:text-white transition-colors duration-200">Links</a>
-                <div class="flex items-center space-x-6 pt-4">
-                    <a href="feed.xml" class="text-gray-400 hover:text-white transition-colors"><i class="fa fa-rss-square text-2xl"></i></a>
-                    <a href="mailto:silkprojectdev@gmail.com" class="text-gray-400 hover:text-white transition-colors"><i class="fa fa-envelope text-2xl"></i></a>
-                    <a href="https://github.com/Silk-Project" class="text-gray-400 hover:text-white transition-colors"><i class="fa fa-github text-2xl"></i></a>
+         <div id="mobile-menu" class="hidden">
+            <nav>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#" class="nav-link">News</a>
+                <a href="#" class="nav-link">Downloads</a>
+                <a href="#" class="nav-link">Contact</a>
+                <div class="mobile-socials">
+                    <a href="feed.xml" class="social-link"><i class="fa fa-rss-square"></i></a>
+                    <a href="mailto:silkprojectdev@gmail.com" class="social-link"><i class="fa fa-envelope"></i></a>
+                    <a href="https://github.com/Silk-Project" class="social-link"><i class="fab fa-github"></i></a>
                 </div>
             </nav>
         </div>
     </header>
 
-    <!-- Main Content -->
     <main>
-        <!-- Hero Section -->
-        <section class="min-h-[60vh] flex items-center justify-center py-20 px-4" style="background: linear-gradient(180deg, rgba(101, 4, 143, 0.5) 0%, rgba(9, 4, 12, 1) 100%);">
-            <div class="text-center bg-black/30 backdrop-blur-sm p-8 md:p-12 rounded-2xl shadow-2xl max-w-4xl mx-auto">
-                <h1 class="text-4xl md:text-6xl font-extrabold mb-4">Hello again, <span class="text-primary-accent">Retro World.</span></h1>
-                <p class="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto mb-8">
-                    Test the SilkOS beta now on Github. <br> Or compile it yourself.
+        <section class="hero-section" style="background: linear-gradient(180deg, #5c0086, #18012400);">
+            <div class="hero-box">
+                <h1>90s Tech, <span class="text-primary-accent">Reimagined.</span></h1>
+                <p>
+                    Test the SilkOS beta on Github now. <br> Or compile it yourself.
                 </p>
-                <div class="flex flex-wrap justify-center gap-4">
-                    <a href="https://github.com/CommandCrafterx/silkos-legacy" class="bg-gray-800 text-white font-semibold py-3 px-6 rounded-lg hover:bg-gray-700 transition-transform duration-200 transform hover:scale-105 shadow-lg flex items-center space-x-2">
+                <div class="hero-buttons">
+                    <a href="https://github.com/CommandCrafterx/SilkOS" class="btn btn-secondary">
                         <i class="fab fa-github"></i>
                         <span>Visit Github</span>
                     </a>
-                    <a href="https://github.com/CommandCrafterx/silkos-legacy/releases/download/V0.1.1/silkos-0.1.1-amd64.iso" class="bg-primary-accent text-white font-semibold py-3 px-6 rounded-lg hover:bg-accent transition-transform duration-200 transform hover:scale-105 shadow-lg flex items-center space-x-2">
+                    <!--<a href="https://github.com/CommandCrafterx/silkos/releases/download/V0.1.0/silkos-0.1.0-amd64.iso" class="btn btn-primary">
                         <i class="fa fa-download"></i>
                         <span>Download ISO (amd64)</span>
                     </a>
-                     <a href="https://github.com/CommandCrafterx/silkos-legacy/releases/download/V0.1.1/silkos-0.1.1-ia32.iso" class="bg-primary-accent text-white font-semibold py-3 px-6 rounded-lg hover:bg-accent transition-transform duration-200 transform hover:scale-105 shadow-lg flex items-center space-x-2">
+                     <a href="https://github.com/CommandCrafterx/silkos/releases/download/V0.1.0/silkos-0.1.0-ia32.iso" class="btn btn-primary">
                         <i class="fa fa-download"></i>
                         <span>Download ISO (ia32)</span>
-                    </a>
+                    </a>-->
                 </div>
             </div>
         </section>
 
-        <!-- About Section -->
-        <section id="about" class="py-20">
-            <div class="container mx-auto px-4 max-w-5xl space-y-12">
+        <section id="about">
+            <div class="about-container">
                 <article>
-                    <h2 class="text-3xl font-bold mb-4 text-primary-accent">Who we are</h2>
-                    <p class="text-gray-300 leading-relaxed">
-                        Silk is a project with a community that wants to be innovative, develop and revive operating systems since 2024.
-                        We are looking forward to getting more members for the Silk project. If you want to contribute or bring in ideas, you can feel free to ask us on our <a href="#" class="text-primary-accent underline hover:no-underline">contact page</a>.
+                    <h2 class="text-primary-accent">Who we are</h2>
+                    <p>
+                        The Silk Project is a community that wants to be innovative, develop open-source software (mostly MIT licensed) and revive operating systems since 2024.
+                        We are looking forward to getting more members for the Silk Project. If you want to contribute or simply want to share your ideas with us, feel free to ask us on our <a href="#">contact page</a>.
                     </p>
                 </article>
                 <article>
-                    <h2 class="text-3xl font-bold mb-4 text-primary-accent">What software we create and revive</h2>
-                    <p class="text-gray-300 leading-relaxed">
+                    <h2 class="text-primary-accent">What software we create and revive</h2>
+                    <p>
                         The Silk project has created a large collection of software, which mainly includes older (but also newer!) operating systems, basic tools and applications.
-                        This includes, for example, SilkOS. SilkOS is a microkernel-based hobby operating system based on HelenOS.
-                        Its goal is to create a clean, stable and modular foundation for creating custom applications and services.
-                        This operating system can run on a variety of hardware, such as old computers and even VMs.
+                    </p>
+                    <p>
+                        This includes, for example, <a href="https://github.com/CommandCrafterx/SilkOS" class="text-primary-accent">SilkOS</a> (not to be confused with SilkOS Legacy), a fork of SerenityOS. SilkOS is a love letter to '90s user interfaces with a custom Unix-like core. It flatters with sincerity by stealing beautiful ideas from various other systems. It's goal is to combine a relatively modern software foundation with the classic 1990s software asthetics and features. It mainly features a 64-bit kernel which is capable of multi-threading, a full featured web browser called <i>Kori</i> and great POSIX compatibility.
+                    </p>
+                    <p>
+                        Another great example is <i>the</i> <a href="https://github.com/Silk-Project/Silk-Mizu-Browser" class="text-primary-accent">Silk Mizu Browser</a>. The Silk Mizu Browser is a lightweight browser built on the PyQT6 GUI framework. It mainly focuses on being highly customizable, featuring a theme editor, an extension store for widgets (e. g. Notes in the sidebar) and web engine extensions like local AI webpage summarization. Instead of the official extensions being closed source like most browsers, Mizu's extensions are open source, and users can even create their own extensions for the browser.
                     </p>
                 </article>
                  <article>
-                    <h2 class="text-3xl font-bold mb-4 text-primary-accent">Why the name Silk</h2>
-                    <p class="text-gray-300 leading-relaxed">
+                    <h2 class="text-primary-accent">Why the name Silk</h2>
+                    <p>
                         Because our software always runs silky smooth. I'm not sure what kind of question that is.
                     </p>
                 </article>
             </div>
         </section>
 
-        <!-- Developers Section -->
-        <section id="devs" class="py-20 bg-primary-medium">
-             <div class="container mx-auto px-4 text-center">
-                <h2 class="text-3xl font-bold mb-12">Meet the Silk developers</h2>
-                <div class="flex flex-wrap justify-center gap-8">
+        <section id="devs">
+             <div class="devs-container">
+                <h2>Meet the Silk developers</h2>
+                <div class="dev-card-grid">
 
-                    <!-- Dev Card 1 -->
-                    <article class="bg-gray-800/50 p-6 rounded-xl shadow-lg w-full max-w-sm text-left transform transition-transform duration-300 hover:-translate-y-2">
-                        <div class="flex items-center mb-4">
-                            <img class="w-16 h-16 rounded-full mr-4 border-2 border-primary-accent" src="https://avatars.githubusercontent.com/u/195649214?v=4" alt="Profile picture of CommandCrafterx">
-                            <div>
-                                <h3 class="text-xl font-bold">CommandCrafterx</h3>
+                    <article class="dev-card">
+                        <div class="dev-card-header">
+                            <img src="https://avatars.githubusercontent.com/u/195649214?v=4" alt="Profile picture of CommandCrafterx">
+                            <div class="dev-card-header-title">
+                                <h3>CommandCrafterx</h3>
                                 <p class="text-primary-accent">Main Developer</p>
-                                <a href="https://github.com/CommandCrafterx" class="text-gray-400 hover:text-white transition-colors text-sm">github.com/CommandCrafterx</a>
+                                <a href="https://github.com/CommandCrafterx">github.com/CommandCrafterx</a>
                             </div>
                         </div>
-                        <ul class="space-y-2 text-gray-300 list-disc list-inside">
+                        <ul class="dev-card-body">
                             <li>Interested in Operating System development and AI</li>
                             <li>Currently learning C</li>
                             <li>Looking for collaboration on small Operating System Projects</li>
                             <li>Pronouns: He/Him</li>
                             <li>Fun fact: I use Arch btw</li>
+                            <li>Current project: SilkOS</li>
                         </ul>
                     </article>
 
-                    <!-- Dev Card 2 -->
-                    <article class="bg-gray-800/50 p-6 rounded-xl shadow-lg w-full max-w-sm text-left transform transition-transform duration-300 hover:-translate-y-2">
-                        <div class="flex items-center mb-4">
-                            <img class="w-16 h-16 rounded-full mr-4 border-2 border-primary-accent" src="https://avatars.githubusercontent.com/u/192363076?v=4" alt="Profile picture of FlipArt">
-                            <div>
-                                <h3 class="text-xl font-bold">FlipArt</h3>
+                    <article class="dev-card">
+                        <div class="dev-card-header">
+                            <img src="https://avatars.githubusercontent.com/u/192363076?v=4" alt="Profile picture of FlipArt">
+                            <div class="dev-card-header-title">
+                                <h3>FlipArt</h3>
                                 <p class="text-primary-accent">Co-Developer</p>
-                                <a href="https://github.com/FlipArtYT" class="text-gray-400 hover:text-white transition-colors text-sm">github.com/FlipArtYT</a>
+                                <a href="https://github.com/FlipArtYT">github.com/FlipArtYT</a>
                             </div>
                         </div>
-                        <ul class="space-y-2 text-gray-300 list-disc list-inside">
+                        <ul class="dev-card-body">
                             <li>Interested in game and app development</li>
                             <li>Trying to learn C</li>
                             <li>Pronouns: He/Him</li>
-                            <li>Current project: SilkOS</li>
+                            <li>Current project: Silk Mizu Browser</li>
                         </ul>
                     </article>
 
@@ -178,20 +547,20 @@
         </section>
     </main>
 
-    <!-- Footer -->
-    <footer class="bg-footer-dark text-center py-6">
-        <p class="text-gray-400">&copy; 2025 The Silk Project.</p>
+    <footer class="bg-footer-dark">
+        <p>&copy; 2025 The Silk Project.</p>
     </footer>
 
     <script>
         // JavaScript for mobile menu toggle
         const mobileMenuButton = document.getElementById('mobile-menu-button');
         const mobileMenu = document.getElementById('mobile-menu');
+        const account = document.getElementsByClassName("account-name");
+        let logged_in = false;
 
         mobileMenuButton.addEventListener('click', () => {
             mobileMenu.classList.toggle('hidden');
         });
     </script>
-
 </body>
 </html>
