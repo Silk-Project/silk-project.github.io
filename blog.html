@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Silk Project - Blog</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fira+Sans:400,500,700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="silkoslogo.svg">
+    <style>
+        body {
+            font-family: 'Fira Sans', Arial, sans-serif;
+            background-color: #09040C;
+            color: #F2E9F7;
+            margin: 0;
+            padding: 0;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        .bg-primary-dark { background-color: #09040C; }
+        .bg-primary-medium { background-color: rgba(9, 4, 12, 0.9); }
+        .bg-footer-dark { background-color: rgba(6, 2, 8, 0.9); }
+        .text-primary-accent { color: #B153DD; }
+        .hover-bg-accent:hover { background-color: #7720A2; }
+        
+        /* Utility */
+        .hidden {
+            display: none;
+        }
+        .container {
+            max-width: 1280px;
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+
+        /* Header */
+        header {
+            background-color: rgba(9, 4, 12, 0.7);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            border-bottom: 1px solid #1f2937;
+        }
+        .header-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 4rem;
+        }
+        .logo-link {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: #F2E9F7;
+        }
+        .logo-link img {
+            height: 2rem;
+            width: 2rem;
+            margin-right: 0.75rem;
+        }
+        .logo-link span {
+            font-size: 1.25rem;
+            font-weight: 700;
+        }
+        .account-btn {
+            display: flex;
+            flex-direction: row;
+            gap: 10px;
+            align-items: center;
+            color: #9ca3af;
+            user-select: none;
+            transition: 0.2s;
+            cursor: pointer;
+            border: none;
+            background-color: none;
+        }
+        .account-btn:hover {
+            color: #fff;
+        }
+        .account-btn p {
+            font-size: 14px;
+        }
+
+        /* Desktop Navigation */
+        .desktop-nav {
+            display: none;
+            column-gap: 0.25rem;
+        }
+        .nav-link {
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            color: #d1d5db;
+            text-decoration: none;
+            transition: color 0.2s, background-color 0.2s;
+        }
+        .nav-link:hover {
+            background-color: #374151;
+            color: #fff;
+        }
+
+        /* Desktop Socials */
+        .desktop-socials {
+            display: none;
+            align-items: center;
+            column-gap: 1rem;
+        }
+        .social-link {
+            color: #9ca3af;
+            transition: color 0.2s;
+            cursor: pointer;
+        }
+        .social-link:hover {
+            color: #fff;
+        }
+        .social-link i {
+            font-size: 1.25rem;
+        }
+        .vl {
+            border-left: 1px solid rgba(77, 77, 77, 0.425);
+            height: 35px;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-wrapper {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;
+            width: 100px;
+            align-items: center;
+            gap: 15px;
+        }
+        .mobile-menu-btn {
+            color: #fff;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+        .mobile-menu-btn:focus {
+            outline: none;
+        }
+
+        #mobile-menu {
+            background-color: #111827; /* bg-gray-900 */
+        }
+        #mobile-menu nav {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 1rem;
+            row-gap: 0.5rem;
+        }
+        #mobile-menu .nav-link {
+            display: block;
+            width: 100%;
+            text-align: center;
+        }
+        #mobile-menu .mobile-socials {
+            display: flex;
+            align-items: center;
+            column-gap: 1.5rem;
+            padding-top: 1rem;
+        }
+        #mobile-menu .social-link i {
+            font-size: 1.5rem;
+        }
+
+        /* Responsive (md) */
+        @media (min-width: 900px) {
+            .desktop-nav {
+                display: flex;
+            }
+            .desktop-socials {
+                display: flex;
+            }
+            .mobile-menu-wrapper {
+                display: none;
+            }
+            #mobile-menu {
+                display: none !important; /* md:hidden */
+            }
+        }
+
+        /* Hero Section */
+        main {
+            background-image: url("bg.png"), linear-gradient(180deg, #5c0086, #18012400);
+            background-repeat: no-repeat;
+            background-position: 0px;
+            background-size: cover;
+        }
+
+        #posts-layout {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            margin: auto;
+            padding: 3rem;
+        }
+
+        #posts-box {
+            display: flex;
+            flex: 1;
+            flex-direction: column;
+            min-height: 80vh;
+            max-height: 80vh;
+            background-color: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(4px);
+            padding: 1rem;
+            border-radius: 1rem;
+            border: solid 1px #a5a5a550;
+            background-color: #0c01137a;
+            box-shadow: 2px 2px 10px #ffffff13;
+            overflow: auto;
+        }
+
+        #posts-content {
+            display: flex;
+            flex-direction: column;
+        }
+
+        #loading-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+             margin-top: 2rem;
+        }
+
+        #status-box {
+            flex: 0.5;
+            background-color: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(4px);
+            padding: 2rem;
+            border-radius: 1rem;
+            border: solid 1px #a5a5a550;
+            background-color: #0c01137a;
+            box-shadow: 2px 2px 10px #ffffff13;
+            margin-left: 2rem;
+        }
+
+        .post {
+            background-color: rgba(0, 0, 0, 0.01);
+            backdrop-filter: blur(4px);
+            padding: 2rem;
+            border-radius: 1rem;
+            border: solid 1px #a5a5a550;
+            background-color: #0c01137a;
+            box-shadow: 2px 2px 10px #ffffff13;
+            margin: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .post:hover {
+            background-color: rgba(0, 0, 0, 0);
+            box-shadow: 2px 2px 10px #c7c2c228;
+            transform: translateY(-2px);
+        }
+
+        .post h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        .post p {
+            color: #d1d5db;
+            line-height: 1.5;
+        }
+        .post hr {
+            border-color: 1px solid rgba(77, 77, 77, 0.233);
+            margin: 1rem 0;
+        }
+
+        .post-details {
+            color: #9ca3af;
+            font-size: 0.875rem;
+            margin: 0;
+        }
+
+        #posts-controls {
+            display: flex;
+            flex-direction: row;
+            border: solid 1px#a5a5a550;
+            padding: 5px 0 5px 0;
+            border-radius: 1rem;
+            background-color: rgba(0, 0, 0, 0.123);
+            margin-bottom: 0.5rem;
+        }
+
+        .tool-btn i {
+            margin: 0 8px 0 3px;
+        }
+
+        .tool-btn {
+            padding: 6px 10px 6px 10px;
+            background-color: rgba(0, 0, 0, 0.123);
+            border-radius: 1rem;
+            border: solid 1px #a5a5a550;
+            color: white;
+            font-size: 18px;
+            margin: 0 5px;
+        }
+
+        .tool-btn:hover {
+            background-color: rgba(90, 90, 90, 0.123);
+        }
+
+        .tool-btn:active {
+            background-color: rgba(36, 36, 36, 0.123);
+        }
+
+        #post-view {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 2rem;
+        }
+
+        #post-view h2 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        #post-view p {
+            color: #d1d5db;
+            line-height: 1.5;
+        }
+        #post-view hr {
+            border-color: 1px solid rgba(77, 77, 77, 0.233);
+            margin: 1rem 0;
+        }
+        #post-view .post-details {
+            color: #9ca3af;
+            font-size: 0.875rem;
+            margin: 0;
+        }
+
+        section {
+            margin: 0 auto 0 auto;
+        }
+
+        /* Buttons */
+        .btn {
+            color: #fff;
+            font-weight: 600;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            transition: transform 0.2s, background-color 0.2s;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            display: inline-flex;
+            align-items: center;
+            column-gap: 0.5rem;
+        }
+        .btn:hover {
+            transform: scale(1.05);
+        }
+        .btn-secondary {
+            background-color: #1f2937; /* bg-gray-800 */
+        }
+        .btn-secondary:hover {
+            background-color: #374151; /* hover:bg-gray-700 */
+        }
+        .btn-primary {
+            background-color: #B153DD;
+        }
+        .btn-primary:hover {
+            background-color: #7720A2;
+        }
+
+        /* Responsive Hero */
+        @media (max-width: 900px) {
+            #posts-layout {
+                padding: 0.5rem;
+                flex-direction: column-reverse;
+            }
+            #status-box {
+                margin: 0;
+                margin-bottom: 1rem;
+            }
+        }
+        
+        /* Dev Card */
+        .dev-card {
+            background-color: rgba(31, 41, 55, 0.5);
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            width: 100%;
+            min-height: 380px;
+            max-width: 384px;
+            text-align: left;
+            transition: all 0.3s;
+            border: 1px solid #1f2937;
+        }
+        .dev-card:hover {
+            transform: translateY(-0.5rem);
+            box-shadow: 0 10px 15px -0.5px rgba(202, 202, 202, 0.1)
+        }
+        .dev-card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        .dev-card-header img {
+            width: 4rem;
+            height: 4rem;
+            border-radius: 9999px;
+            margin: 1rem;
+            border: 2px solid #b153dd8a;
+        }
+        .dev-card-header-title {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            flex-grow: 1;
+            margin: 4px;
+        }
+        .dev-card-header-title h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            padding: 3px;
+            margin: 0;
+        }
+        .dev-card-header-title a {
+            color: #9ca3af;
+            text-decoration: none;
+            font-size: 0.875rem;
+            transition: color 0.2s;
+            padding: 3px;
+            margin: 0;
+        }
+        .dev-card-header-title p {
+            margin: 0px;
+            padding: 3px;
+        }
+        .dev-card-header-title a:hover {
+            color: #fff;
+        }
+        .dev-card-body {
+            list-style-type: disc;
+            list-style-position: inside;
+            display: flex;
+            flex-direction: column;
+            row-gap: 1rem;
+            color: #d1d5db;
+        }
+
+        /* Footer */
+        footer {
+            background-color: rgba(6, 2, 8, 0.9);
+            text-align: center;
+            padding: 1.5rem 0;
+        }
+        footer p {
+            color: #9ca3af;
+        }
+
+    </style>
+</head>
+<body class="bg-primary-dark">
+
+    <header>
+        <div class="container">
+            <div class="header-inner">
+                <a href="index.html" class="logo-link">
+                    <img src="silkoslogo.svg" alt="SilkOS Logo">
+                    <span>Silk Project</span>
+                </a>
+
+                <nav class="desktop-nav">
+                    <a href="index.html" class="nav-link">Home</a>
+                    <a href="blog.html" class="nav-link">Blog</a>
+                    <a href="#" class="nav-link">Downloads</a>
+                    <a href="contact.html" class="nav-link">Contact</a>
+                </nav>
+                
+                <div class="desktop-socials">
+                    <a href="feed.xml" class="social-link"><i class="fa fa-rss-square"></i></a>
+                    <a href="mailto:silkprojectdev@gmail.com"" class="social-link"><i class="fa fa-envelope"></i></a>
+                    <a href="https://github.com/Silk-Project" class="social-link"><i class="fab fa-github"></i></a>
+                </div>
+
+                <div class="mobile-menu-wrapper">
+                    <button id="mobile-menu-button" class="mobile-menu-btn">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+         <div id="mobile-menu" class="hidden">
+            <nav>
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="blog.html" class="nav-link">Blog</a>
+                <a href="#" class="nav-link">Downloads</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+                <div class="mobile-socials">
+                    <a href="feed.xml" class="social-link"><i class="fa fa-rss-square"></i></a>
+                    <a href="mailto:silkprojectdev@gmail.com" class="social-link"><i class="fa fa-envelope"></i></a>
+                    <a href="https://github.com/Silk-Project" class="social-link"><i class="fab fa-github"></i></a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div id="posts-layout">
+            <div id="posts-box">
+                <div id="posts-controls">
+                    <button id="refresh-button" class="tool-btn">
+                        <i class="fa fa-arrows-rotate"></i>
+                        <span>Refresh</span>
+                    </button>
+                    <select id="sort-select" class="tool-btn">
+                        <option value="newest">Newest</option>
+                        <option value="oldest">Oldest</option>
+                    </select>
+                    <input type="text" id="search-input" class="tool-btn" placeholder="Search posts..." style="flex-grow: 1; padding: 5px 10px;">
+                </div>
+                <div id="posts-content"></div>
+                <div id="post-view">
+                    <button id="back-button" class="tool-btn" style="margin-bottom: 1rem; display: none;">
+                        <i class="fa fa-arrow-left"></i>
+                        <span>Back to Posts</span>
+                    </button>
+                    <div id="post-details-container"></div>
+                </div>
+                <div style="text-align: center; margin-top: 1rem;" id="loading-container">
+                    <i class="fa fa-cog fa-spin" style="font-size: 2rem"></i>
+                    <p>Loading posts...</p>
+                </div>
+            </div>
+            <div id="status-box">
+                <h2>Status</h2>
+                <p>Welcome to the Silk Project blog! Here you'll find the latest news, updates, and insights about our operating system. Stay tuned for exciting announcements and behind-the-scenes looks at our development process.</p>
+                <h3>SilkOS Activity</h3>
+                <img src="https://img.shields.io/github/commit-activity/m/Commandcrafterx/SilkOS?style=for-the-badge&logo=github" alt="Commit Activity">
+                <br>
+                <img src="https://img.shields.io/github/issues/Commandcrafterx/SilkOS?style=for-the-badge&logo=github" alt="Open Issues">
+                <h3>Silk Dev Portal</h3>
+                <img src="https://img.shields.io/github/commit-activity/m/Silk-Project/silk-dev-portal?style=for-the-badge" alt="Commit Activity">
+                <br>
+                <img src="https://img.shields.io/github/issues/Silk-Project/silk-dev-portal?style=for-the-badge" alt="Open Issues">
+                <h3>Silk Mizu Browser Activity</h3>
+                <img src="https://img.shields.io/github/commit-activity/m/Silk-Project/Silk-Mizu-Browser?style=for-the-badge" alt="Commit Activity">
+                <br>
+                <img src="https://img.shields.io/github/issues/Silk-Project/Silk-Mizu-Browser?style=for-the-badge" alt="Open Issues">
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-footer-dark">
+        <p>&copy; 2025-2026 The Silk Project.</p>
+    </footer>
+
+    <script>
+        // JavaScript for mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const account = document.getElementsByClassName("account-name");
+        const urlParams = new URLSearchParams(window.location.search);
+        const loadingContainer = document.getElementById("loading-container");
+        const backButton = document.getElementById("back-button");
+        const posts_box = document.getElementById("posts-content");
+        const postsControls = document.getElementById("posts-controls");
+        const refreshButton = document.getElementById("refresh-button");
+        const searchInput = document.getElementById("search-input");
+        const sortSelect = document.getElementById("sort-select");
+        const postDetailsContainer = document.getElementById("post-details-container");
+        let currentRssData;
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        async function fetchRSS(url) {
+            const targetUrl = encodeURIComponent(url);
+            let rssList = []
+
+            try {
+                const response = await fetch(targetUrl);
+                const xmlText = await response.text();
+    
+                // Parse the XML
+                const parser = new DOMParser();
+                const xmlDoc = parser.parseFromString(xmlText, "text/xml");
+    
+                // Find individual items (<item>)
+                const items = xmlDoc.querySelectorAll("item");
+    
+                items.forEach(el => {
+                    const title = el.querySelector("title") ? el.querySelector("title").textContent : "No Title";
+                    const description = el.querySelector("description") ? el.querySelector("description").textContent : "No Description";
+                    const author = el.querySelector("author") ? el.querySelector("author").textContent : "No Author";
+                    const pubDate = el.querySelector("pubDate") ? el.querySelector("pubDate").textContent : "No Publication Date";
+                    
+                    rssList.push({ title, description, author, pubDate })
+                });
+
+            } catch (error) {
+                console.error('Error while fetching feed:', error);
+            }
+
+            return rssList
+        }
+
+        async function updateFeed() {
+            const posts_box = document.getElementById("posts-content");
+            loadingContainer.style.display = "flex";
+
+            const data = await fetchRSS("feed.xml");
+            currentRssData = data;
+            renderPosts(data);
+            updateResults();
+        }
+
+        function showPost(index) {
+            postDetailsContainer.style.display = "block";
+            posts_box.style.display = "none";
+            backButton.style.display = "inline-flex";
+            postsControls.style.display = "none";
+            const post = currentRssData[index];
+            console.log("Showing post:", post);
+            if (!post) return;
+
+            const postDetails = document.getElementById("post-details-container");
+            postDetails.innerHTML = `
+                <h2>${post.title}</h2>
+                <p>${post.description}</p>
+                <hr>
+                <p class="post-details">By ${post.author} on ${new Date(post.pubDate).toLocaleDateString()} 
+                    ${new Date(post.pubDate).toLocaleTimeString()}</p>
+            `;
+        }
+
+        function renderPosts(posts) {
+            posts_box.innerHTML = ""; // Clear existing posts
+            loadingContainer.style.display = "none"; // Hide loading indicator
+
+            posts.forEach(post => {
+                const postElement = document.createElement("div");
+                postElement.addEventListener("click", () => showPost(posts.indexOf(post)));
+                postElement.setAttribute("data-id", posts.indexOf(post));
+                postElement.classList.add("post");
+
+                postElement.innerHTML = `
+                    <h2>${post.title}</h2>
+                    <p>${post.description.substring(0, 100)}...</p>
+                    <hr>
+                    <p class="post-details">By ${post.author} on ${new Date(post.pubDate).toLocaleDateString()} 
+                        ${new Date(post.pubDate).toLocaleTimeString()}</p>
+                `;
+
+                posts_box.appendChild(postElement);
+            });
+        }
+
+        function updateResults() {
+            // Combined filters and sorting logic
+            const query = searchInput.value.toLowerCase();
+            const filteredPosts = currentRssData.filter(post => 
+                post.title.toLowerCase().includes(query) || 
+                post.description.toLowerCase().includes(query) ||
+                post.author.toLowerCase().includes(query)
+            );
+
+            const sortedPosts = [...filteredPosts].sort((a, b) => {
+                const dateA = new Date(a.pubDate);
+                const dateB = new Date(b.pubDate);
+                return sortSelect.value === "newest" ? dateB - dateA : dateA - dateB;
+            });
+
+            renderPosts(sortedPosts);
+        }
+
+        backButton.addEventListener("click", () => {
+            postDetailsContainer.style.display = "none";
+            postsControls.style.display = "flex";
+            posts_box.style.display = "flex";
+            backButton.style.display = "none";
+        });
+
+        sortSelect.addEventListener("change", updateResults);
+        searchInput.addEventListener("input", updateResults);
+        refreshButton.addEventListener("click", updateFeed);
+
+        (async () => {
+            await updateFeed();
+            console.log(currentRssData);
+
+            if (urlParams.get("post")) {
+                const postIndex = parseInt(urlParams.get("post"));
+                console.log("Post index from URL:", postIndex);
+                if (!isNaN(postIndex)) {
+                    const post = currentRssData[postIndex];
+                    console.log("Post data:", post);
+                    if (post) {
+                        showPost(postIndex);
+                    }
+                }
+            }
+        })();
+
+        
+    </script>
+</body>
+</html>
