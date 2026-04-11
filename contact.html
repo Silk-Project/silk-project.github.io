@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Silk Project</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fira+Sans:400,500,700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="silkoslogo.svg">
+    <style>
+        body {
+            font-family: 'Fira Sans', sans-serif;
+            background-color: #09040C;
+            color: #F2E9F7;
+            margin: 0;
+            padding: 0;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        .bg-primary-dark { background-color: #09040C; }
+        .bg-primary-medium { background-color: rgba(9, 4, 12, 0.9); }
+        .bg-footer-dark { background-color: rgba(6, 2, 8, 0.9); }
+        .text-primary-accent { color: #B153DD; }
+        .hover-bg-accent:hover { background-color: #7720A2; }
+        
+        /* Utility */
+        .hidden {
+            display: none;
+        }
+        .container {
+            max-width: 1280px;
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+
+        /* Header */
+        header {
+            background-color: rgba(9, 4, 12, 0.7);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            border-bottom: 1px solid #1f2937;
+        }
+        .header-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 4rem;
+        }
+        .logo-link {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: #F2E9F7;
+        }
+        .logo-link img {
+            height: 2rem;
+            width: 2rem;
+            margin-right: 0.75rem;
+        }
+        .logo-link span {
+            font-size: 1.25rem;
+            font-weight: 700;
+        }
+        .account-btn {
+            display: flex;
+            flex-direction: row;
+            gap: 10px;
+            align-items: center;
+            color: #9ca3af;
+            user-select: none;
+            transition: 0.2s;
+            cursor: pointer;
+            border: none;
+            background-color: none;
+        }
+        .account-btn:hover {
+            color: #fff;
+        }
+        .account-btn p {
+            font-size: 14px;
+        }
+
+        /* Desktop Navigation */
+        .desktop-nav {
+            display: none;
+            column-gap: 0.25rem;
+        }
+        .nav-link {
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            color: #d1d5db;
+            text-decoration: none;
+            transition: color 0.2s, background-color 0.2s;
+        }
+        .nav-link:hover {
+            background-color: #374151;
+            color: #fff;
+        }
+
+        /* Desktop Socials */
+        .desktop-socials {
+            display: none;
+            align-items: center;
+            column-gap: 1rem;
+        }
+        .social-link {
+            color: #9ca3af;
+            transition: color 0.2s;
+            cursor: pointer;
+        }
+        .social-link:hover {
+            color: #fff;
+        }
+        .social-link i {
+            font-size: 1.25rem;
+        }
+        .vl {
+            border-left: 1px solid rgba(77, 77, 77, 0.425);
+            height: 35px;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-wrapper {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;
+            width: 100px;
+            align-items: center;
+            gap: 15px;
+        }
+        .mobile-menu-btn {
+            color: #fff;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+        .mobile-menu-btn:focus {
+            outline: none;
+        }
+
+        #mobile-menu {
+            background-color: #111827; /* bg-gray-900 */
+        }
+        #mobile-menu nav {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 1rem;
+            row-gap: 0.5rem;
+        }
+        #mobile-menu .nav-link {
+            display: block;
+            width: 100%;
+            text-align: center;
+        }
+        #mobile-menu .mobile-socials {
+            display: flex;
+            align-items: center;
+            column-gap: 1.5rem;
+            padding-top: 1rem;
+        }
+        #mobile-menu .social-link i {
+            font-size: 1.5rem;
+        }
+
+        /* Responsive (md) */
+        @media (min-width: 900px) {
+            .desktop-nav {
+                display: flex;
+            }
+            .desktop-socials {
+                display: flex;
+            }
+            .mobile-menu-wrapper {
+                display: none;
+            }
+            #mobile-menu {
+                display: none !important; /* md:hidden */
+            }
+        }
+
+        /* Hero Section */
+        .hero-section {
+            min-height: 57vh;
+            background-image: url("bg.png"), linear-gradient(180deg, #5c0086, #18012400);
+            display: flex;
+            background-repeat: no-repeat;
+            background-position: 0px;
+            background-size: cover;
+            align-items: center;
+            justify-content: center;
+            padding: 5rem 1rem;
+            position: relative;
+        }
+        .hero-box {
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(4px);
+            padding: 4.2rem 0 4.2rem 0;
+            border-radius: 1rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            border: solid 1px #a5a5a550;
+            background-color: #0c01137a;
+            box-shadow: 2px 2px 10px #ffffff13;
+            width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .hero-box h1 {
+            font-size: 3.2rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            margin-top: 0;
+        }
+        .hero-box p {
+            font-size: 1.1rem;
+            color: #d1d5db;
+            max-width: 672px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 2rem;
+            line-height: 1.5;
+        }
+        .hero-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        #gradient-overlay {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(0deg,rgba(9, 4, 12, 1) 0%, rgba(0, 0, 0, 0) 10%);
+            position: absolute;
+        }
+
+        section {
+            margin: 0 auto 0 auto;
+        }
+
+        /* Buttons */
+        .btn {
+            color: #fff;
+            font-weight: 600;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            transition: transform 0.2s, background-color 0.2s;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            display: inline-flex;
+            align-items: center;
+            column-gap: 0.5rem;
+        }
+        .btn:hover {
+            transform: scale(1.05);
+        }
+        .btn-secondary {
+            background-color: #1f2937; /* bg-gray-800 */
+        }
+        .btn-secondary:hover {
+            background-color: #374151; /* hover:bg-gray-700 */
+        }
+        .btn-primary {
+            background-color: #B153DD;
+        }
+        .btn-primary:hover {
+            background-color: #7720A2;
+        }
+
+        /* Responsive Hero */
+        @media (min-width: 900px) {
+            .hero-box {
+                padding: 4.2rem;
+                max-width: 650px;
+            }
+            .hero-box h1 {
+                font-size: 3.75rem;
+            }
+            .hero-box p {
+                font-size: 1.25rem;
+            }
+        }
+
+        /* About Section */
+        #about {
+            padding: 5rem 2rem 5rem 2rem;
+            max-width: 90%;
+        }
+        .about-container {
+            max-width: 1024px;
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 1rem;
+            padding-right: 1rem;
+            display: flex;
+            flex-direction: column;
+            row-gap: 3rem;
+        }
+        #about article h2 {
+            font-size: 1.875rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        #about article p {
+            color: #d1d5db;
+            line-height: 1.625;
+        }
+        #about article a {
+            color: #B153DD;
+            text-decoration: underline;
+        }
+        #about article a:hover {
+            text-decoration: none;
+        }
+
+        .title-pair {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+        .title-pair i {
+            font-size: 1.5rem;
+        }
+        #card-container {
+            display: flex;
+            flex-direction: row;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .card-body {
+            background-color: rgba(31, 41, 55, 0.5);
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            width: 100%;
+            min-height: 380px;
+            max-width: 384px;
+            text-align: left;
+            transition: all 0.3s;
+            border: 1px solid #1f2937;
+        }
+
+        @media (max-width: 900px) {
+            #card-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            .card-body {
+                max-width: 80%;
+            }
+        }
+
+        /* Developers Section */
+        #devs {
+            padding-top: 5rem;
+            padding-bottom: 5rem;
+            background-color: rgba(9, 4, 12, 0.9); /* bg-primary-medium */
+        }
+        .devs-container {
+            max-width: 1280px;
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 1rem;
+            padding-right: 1rem;
+            text-align: center;
+        }
+        .devs-container h2 {
+            font-size: 1.875rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+        }
+        .dev-card-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+        }
+        
+        /* Dev Card */
+        .dev-card {
+            background-color: rgba(31, 41, 55, 0.5);
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            width: 100%;
+            min-height: 380px;
+            max-width: 384px;
+            text-align: left;
+            transition: all 0.3s;
+            border: 1px solid #1f2937;
+        }
+        .dev-card:hover {
+            transform: translateY(-0.5rem);
+            box-shadow: 0 10px 15px -0.5px rgba(202, 202, 202, 0.1)
+        }
+        .dev-card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        .dev-card-header img {
+            width: 4rem;
+            height: 4rem;
+            border-radius: 9999px;
+            margin: 1rem;
+            border: 2px solid #b153dd8a;
+        }
+        .dev-card-header-title {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            flex-grow: 1;
+            margin: 4px;
+        }
+        .dev-card-header-title h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            padding: 3px;
+            margin: 0;
+        }
+        .dev-card-header-title a {
+            color: #9ca3af;
+            text-decoration: none;
+            font-size: 0.875rem;
+            transition: color 0.2s;
+            padding: 3px;
+            margin: 0;
+        }
+        .dev-card-header-title p {
+            margin: 0px;
+            padding: 3px;
+        }
+        .dev-card-header-title a:hover {
+            color: #fff;
+        }
+        .dev-card-body {
+            list-style-type: disc;
+            list-style-position: inside;
+            display: flex;
+            flex-direction: column;
+            row-gap: 1rem;
+            color: #d1d5db;
+        }
+
+        /* Footer */
+        footer {
+            background-color: rgba(6, 2, 8, 0.9);
+            text-align: center;
+            padding: 1.5rem 0;
+        }
+        footer p {
+            color: #9ca3af;
+        }
+
+    </style>
+</head>
+<body class="bg-primary-dark">
+
+    <header>
+        <div class="container">
+            <div class="header-inner">
+                <a href="index.html" class="logo-link">
+                    <img src="silkoslogo.svg" alt="SilkOS Logo">
+                    <span>Silk Project</span>
+                </a>
+
+                <nav class="desktop-nav">
+                    <a href="index.html" class="nav-link">Home</a>
+                    <a href="blog.html" class="nav-link">Blog</a>
+                    <a href="#" class="nav-link">Downloads</a>
+                    <a href="contact.html" class="nav-link">Contact</a>
+                </nav>
+                
+                <div class="desktop-socials">
+                    <a href="feed.xml" class="social-link"><i class="fa fa-rss-square"></i></a>
+                    <a href="mailto:silkprojectdev@gmail.com"" class="social-link"><i class="fa fa-envelope"></i></a>
+                    <a href="https://github.com/Silk-Project" class="social-link"><i class="fab fa-github"></i></a>
+                </div>
+
+                <div class="mobile-menu-wrapper">
+                    <button id="mobile-menu-button" class="mobile-menu-btn">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+         <div id="mobile-menu" class="hidden">
+            <nav>
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="blog.html" class="nav-link">Blog</a>
+                <a href="#" class="nav-link">Downloads</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+                <div class="mobile-socials">
+                    <a href="feed.xml" class="social-link"><i class="fa fa-rss-square"></i></a>
+                    <a href="mailto:silkprojectdev@gmail.com" class="social-link"><i class="fa fa-envelope"></i></a>
+                    <a href="https://github.com/Silk-Project" class="social-link"><i class="fab fa-github"></i></a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero-section">
+            <div id="gradient-overlay"></div>
+            <div class="hero-box">
+                <h1>Contact the Silk Project</h1>
+                <p>If you have any questions, suggestions, feel free to reach out to us! We value your feedback and would love to hear from you.</p>
+                <div class="hero-buttons">
+                    <a class="btn btn-primary" href="mailto:silkprojectdev@gmail.com">
+                        <i class="fa fa-envelope"></i>
+                        <span>Email Us</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+            <section id="about">
+                <div class="about-container">
+                    <article>
+                        <h2>Contact Information</h2>
+                        <p>You can contact us through the following channels:</p>
+                        <div id="card-container">
+                            <div class="card-body">
+                                <div class="title-pair">
+                                    <i class="fa fa-envelope"></i>
+                                    <h3>Email</h3>
+                                </div>
+                                <ul>
+                                    <li><strong>General:</strong> <a href="mailto:silkprojectdev@gmail.com">silkprojectdev@gmail.com</a></li>
+                                    <li><strong>CommandCrafterx:</strong> <a href="mailto:commandcrafter95@gmail.com">commandcrafter95@gmail.com</a></li>
+                                    <li><strong>FlipArt:</strong> <a href="mailto:flipartyt@outlook.com">flipartyt@outlook.com</a></li>
+                                </ul>
+                            </div>
+                            <div class="card-body">
+                                <div class="title-pair">
+                                    <i class="fab fa-github"></i>
+                                    <h3>GitHub</h3>
+                                </div>
+                                <ul>
+                                    <li><strong>General:</strong> <a href="https://github.com/Silk-Project" target="_blank">Silk-Project</a></li>
+                                    <li><strong>CommandCrafterx:</strong> <a href="https://github.com/CommandCrafterx" target="_blank">CommandCrafterx</a></li>
+                                    <li><strong>FlipArt:</strong> <a href="https://github.com/FlipArtYT" target="_blank">FlipArt</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+    </main>
+
+    <footer class="bg-footer-dark">
+        <p>&copy; 2025-2026 The Silk Project.</p>
+    </footer>
+
+    <script>
+        // JavaScript for mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const account = document.getElementsByClassName("account-name");
+        let logged_in = false;
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>
