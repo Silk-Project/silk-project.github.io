@@ -2,11 +2,12 @@
 <rss version="2.0">
    <channel>
       <title>Silk Project Feed</title>
-      <link></link>
+      <link>https://silk-project.github.io/blog.html</link>
       <description>The official feed for the Silk Project</description>
+      <language>en-us</language>
       <item>
          <title>Welcome to the Silk Project blog</title>
-         <link></link>
+         <link>https://silk-project.github.io/blog.html?post=0</link>
          <description>Welcome to the Silk Project blog! We are excited to share the latest updates and insights about our projects.</description>
          <author>FlipArtYT</author>
          <pubDate>Sat, 11 Apr 2026 20:03:00 GMT</pubDate>
