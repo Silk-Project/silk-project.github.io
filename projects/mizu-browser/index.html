@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fira+Sans:400,500,700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="/assets/logo.png">
+    <title>Silk Mizu Browser</title>
+</head>
+<body>
+    <header>
+        <a id="logoarea" href="index.html">
+            <img src="assets/logo.png" alt="Silk Mizu Browser Logo" id="logo">
+            <h3>Silk Mizu Browser</h3>
+        </a>
+        <nav>
+            <a href="index.html" class="current_page_link">Home</a>
+            <a href="#">Theme Store</a>
+            <a href="timeline.html">Timeline</a>
+            <a href="https://github.com/Silk-Project/Silk-Mizu-Browser">GitHub Repository</a>
+        </nav>
+        <div id="social-links">
+            <button id="theme-toggle" aria-label="Toggle theme"><i class="fas fa-moon"></i></button>
+            <a href="mailto:silkprojectdev@gmail.com" target="_blank"><i class="fas fa-envelope"></i></a>
+            <a href="https://github.com/Silk-Project" target="_blank"><i class="fab fa-github"></i></a>
+        </div>
+        <button id="mobile-menu-button" class="mobile-menu-btn">
+            <i class="fas fa-bars"></i>
+        </button>
+    </header>
+
+    <div id="mobile-menu" class="hidden">
+        <nav>
+            <a href="index.html" class="current_page_link">Home</a>
+            <a href="#">Theme Store</a>
+            <a href="timeline.html">Timeline</a>
+            <a href="https://github.com/Silk-Project/Silk-Mizu-Browser">GitHub Repository</a>
+        </nav>
+        <div class="mobile-socials">
+            <a href="mailto:silkprojectdev@gmail.com" target="_blank"><i class="fas fa-envelope"></i></a>
+            <a href="https://github.com/Silk-Project" target="_blank"><i class="fab fa-github"></i></a>
+        </div>
+    </div>
+
+    <main>
+        <section id="hero-section">
+            <div id="gradient_overlay"></div>
+            <div id="hero-container">
+                <div id="hero-box">
+                    <h1>The only lightweight browser you'll ever need.</h1>
+                    <p>No telemety. No forced AI features. Unmatched customisability and completely open source codebase.</p>
+                    <a href="https://github.com/Silk-Project/Silk-Mizu-Browser" class="cta-button"><i class="fab fa-github"></i>Visit GitHub</a>
+                </div>
+                <img id="window" src="assets/windowcrop.png">
+            </div>
+        </section>
+
+        <section class="information-section padded">
+            <div class="image_info_pair">
+                <div class="image_gallery_item">
+                    <img src="assets/compatability.jpeg">
+                </div>
+                <div class="info_gallery_item">
+                    <h1 class="info_title">Highly compatible.</h1>
+                    <p>The Silk Mizu Browser supports various devices and operating systems. Due to its lightweight nature, it's suitable for older computers and offers great performance.</p>
+                </div>
+            </div>
+            <div class="image_info_pair">
+                <div class="info_gallery_item">
+                    <h1 class="info_title">Don't like it? Change it.</h1>
+                    <p>The Silk Mizu browser offers great customisablity with the Navigation UI Editor. Change any part of the navigation interface to your liking. Want a button to open the sidebar? Add it. Don't want a top bar? Remove it.</p>
+                </div>
+                <div class="image_gallery_item">
+                    <img src="assets/interface.png">
+                </div>
+            </div>
+            <div class="image_info_pair">
+                <div class="image_gallery_item">
+                    <img src="assets/privacy.jpg">
+                </div>
+                <div class="info_gallery_item">
+                    <h1 class="info_title">Completely private.</h1>
+                    <p>We don't care about your usage data. We care about keeping your data safe. For this reason, we looked for opportunities in which exposing your private information to the internet is not needed. The AI Summary function, which requires no internet access, is one instance of this.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="information-section padded">
+            <h1 class="info_title">But that's not all!</h1>
+            <p>In addition, the Mizu Browser offers you numerous other practical features to enhance your browsing experience:</p>
+            <div class="split_text_view">
+                <div class="text_view">
+                    <div class="text_view_item">
+                        <i class="fa-solid fa-palette"></i>
+                        <div class="text_view_item_text_pair">
+                            <h2>Theme Packs (WIP)</h2>
+                            <p>Easily import and export themes. Get new themes from the <span class="fancy-text">Theme Store</span>.</p>
+                        </div>
+                    </div>
+                    <div class="text_view_item">
+                        <i class="fa-solid fa-diagram-project"></i>
+                        <div class="text_view_item_text_pair">
+                            <h2>AI Webpage Summary</h2>
+                            <p>Get a quick summary of the current website using a local and private Ollama AI model.</p>
+                        </div>
+                    </div>
+                    <div class="text_view_item">
+                        <i class="fa-solid fa-list-ul"></i>
+                        <div class="text_view_item_text_pair">
+                            <h2>Tab manager (WIP)</h2>
+                            <p>Quickly find your tabs by simply searching for their title or content using keywords or regular expressions.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="text_view">
+                    <div class="text_view_item">
+                        <i class="fa-solid fa-puzzle-piece"></i>
+                        <div class="text_view_item_text_pair">
+                            <h2>Extension Store</h2>
+                            <p>Get extensions for the inbuilt browser sidebar.</p>
+                        </div>
+                    </div>
+                    <div class="text_view_item">
+                        <i class="fa-solid fa-earth-americas"></i>
+                        <div class="text_view_item_text_pair">
+                            <h2>Localization</h2>
+                            <p>Use the browser in your preferred language.</p>
+                        </div>
+                    </div>
+                    <div class="text_view_item">
+                        <i class="fa-solid fa-code"></i>
+                        <div class="text_view_item_text_pair">
+                            <h2>Additional QSS styling</h2>
+                            <p>Customise the browser interface even further by directly styling the main browser interface with QSS.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="information-section padded">
+            <h1 class="info_title">FAQ</h1>
+            <div class="column_text_view">
+                <div class="text_view_item_plain">
+                    <h2>Why the name Mizu Browser?</h2>
+                    <p>The word Mizu (<ruby>水<rp>(</rp><rt>みず</rt><rp>)</rp></ruby>) translates to "water" in japanese, which makes sense because you are "surfing" the web.</p>
+                </div>
+                <div class="text_view_item_plain">
+                    <h2>Why is the tab bar not located at the very top like in most popular browsers?</h2>
+                    <p>It's a limitation of the tab widget (QTabWidget) the browser is using to let the user and program manage the individual browser tabs. It is not possible to seperate the tab bar and the frame which displays the tab's content from a tab widget. They are always connected. The browser would need to adopt a new tab system in order to manage the tab bar and frame as separate widgets.</p>
+                </div>
+                <div class="text_view_item_plain">
+                    <h2>Why Qt?</h2>
+                    <p>The main reason we decided to use the Qt Framework to build the interface is due to the compatibility across multiple operating systems and the customisability.
+                        We were unimpressed by other GUI libraries due to their lack of customization, such as the inbuilt tkinter library.
+                        <!-- Software interfaces that were built with Qt can easily be used on Windows, macOS and Linux. -->
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- The lack of customization in other GUI libraries, such as the built-in tkinter library, turned us off. -->
+
+        <!-- <section id="reviews-section">
+            <div id="reviews_container">
+
+            </div>
+        </section> -->
+    </main>
+
+    <div class="padded"></div>
+
+    <footer>
+        Silk Project 2026 &copy
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
